@@ -38,9 +38,16 @@ class Place
      */
     private $prices;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Theme", mappedBy="place")
+     * @var Theme[]
+     */
+    private $themes;
+
     public function __construct()
     {
         $this->prices = new ArrayCollection();
+        $this->themes = new ArrayCollection();
     }
 
 
@@ -103,6 +110,37 @@ class Place
             // set the owning side to null (unless already changed)
             if ($price->getPlace() === $this) {
                 $price->setPlace(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Theme[]
+     */
+    public function getThemes(): Collection
+    {
+        return $this->themes;
+    }
+
+    public function addTheme(Theme $theme): self
+    {
+        if (!$this->themes->contains($theme)) {
+            $this->themes[] = $theme;
+            $theme->setPlace($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme): self
+    {
+        if ($this->themes->contains($theme)) {
+            $this->themes->removeElement($theme);
+            // set the owning side to null (unless already changed)
+            if ($theme->getPlace() === $this) {
+                $theme->setPlace(null);
             }
         }
 

@@ -14,3 +14,9 @@ prices:
 users:
     type:     rest
     resource: App\Controller\UserController
+themes:
+    type:     rest
+    resource: App\Controller\Place\ThemeController
+preferences:
+    type:     rest
+    resource: App\Controller\User\PreferenceController

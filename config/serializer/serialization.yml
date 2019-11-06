@@ -10,13 +10,50 @@ App\Entity\Place:
             groups: ['place']
 
 
-App\Entity\Price:
+App\Entity\Place:
     attributes:
         id:
-            groups: ['place', 'price']
-        type:
-            groups: ['place', 'price']
+            groups: ['place', 'price', 'theme']
+        name:
+            groups: ['place', 'price', 'theme']
+        address:
+            groups: ['place', 'price', 'theme']
+        prices:
+            groups: ['place']
+        themes:
+            groups: ['place']
+
+App\Entity\Theme:
+    attributes:
+        id:
+            groups: ['place', 'theme']
+        name:
+            groups: ['place', 'theme']
         value:
-            groups: ['place', 'price']
+            groups: ['place', 'theme']
         place:
-            groups: ['price']
+            groups: ['theme']
+
+App\Entity\User:
+    attributes:
+        id:
+            groups: ['user', 'preference']
+        firstname:
+            groups: ['user', 'preference']
+        lastname:
+            groups: ['user', 'preference']
+        email:
+            groups: ['user', 'preference']
+        preferences:
+            groups: ['user']
+
+App\Entity\Preference:
+    attributes:
+        id:
+            groups: ['user', 'preference']
+        name:
+            groups: ['user', 'preference']
+        value:
+            groups: ['user', 'preference']
+        user:
+            groups: ['preference']
